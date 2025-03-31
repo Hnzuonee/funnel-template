@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Můj VIP Link</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: linear-gradient(to bottom, #4e54c8, #8f94fb);
+            color: white;
+        }
+        button {
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #f50057;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exkluzivní obsah čeká právě na tebe!</h1>
+    <button id="redirectBtn">Získat přístup</button>
+
+    <script>
+        document.getElementById('redirectBtn').onclick = async () => {
+            const response = await fetch('/.netlify/functions/redirect', { method: 'POST' });
+            const data = await response.json();
+            window.location.href = data.url;
+        };
+    </script>
+</body>
+</html>
